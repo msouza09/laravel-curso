@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Forum;
+use Dotenv\Util\Str;
 use Illuminate\Http\Request;
 
 class ForumController extends Controller
@@ -13,6 +14,17 @@ class ForumController extends Controller
         $forums = $forum->all();
 
         return view('admin/forums/index', compact('forums'));
+    }
+
+    public function show(string|int $id)
+    {
+        //Forum::find($id)
+        //Forum::where('id', $id)->first();
+        //Forum::where('id', '=', $id)->first();
+        if (!$forum = Forum::find($id)){
+            return back();
+        }
+        return view('admin/forums/show', compact('forum'));
     }
 
     public function Create()
