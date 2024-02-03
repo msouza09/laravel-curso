@@ -12,6 +12,16 @@ class ForumController extends Controller
     {   
         $forums = $forum->all();
 
-        return view('admin/forum/index', compact('forums'));
+        return view('admin/forums/index', compact('forums'));
+    }
+
+    public function Create()
+    {
+        return view('admin/forums/create');
+    }
+
+    public function store(Request $request)
+    {
+        dd($request->all());
     }
 }
