@@ -41,4 +41,29 @@ class ForumController extends Controller
 
         return redirect()->route('forums.index');
     }
+
+    public function edit(Forum $forum, string|int $id)
+    {
+        if (!$forum = $forum->where('id', $id)->first()) {
+            return back();
+        }
+        return view('admin/forums.edit', compact('forum'));
+    }
+
+    public function update(Request $request, Forum $forum, string $id)
+    {
+        if (!$forum = $forum->find($id)) {
+            return back();
+        }
+
+        // $forum->subject = $request->subject;
+        // $forum->body = $request->body;
+        // $forum->save();
+
+        $forum->update($request->only([
+            'subject', 'body'
+        ]));
+
+        return redirect()->route('forums.index');
+    }
 }

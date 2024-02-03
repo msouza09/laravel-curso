@@ -18,6 +18,7 @@
       <td>{{$forum->body }}</td>
       <td>
         <a href="{{ route('forums.show', $forum->id) }}">Visualizar</a>
+        <a href="{{ route('forums.edit', $forum->id)}}">Editar</a>
       </td>
     </tr>
     @endforeach
