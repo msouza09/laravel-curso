@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdateForum;
 use App\Models\Forum;
-use Dotenv\Util\Str;
 use Illuminate\Http\Request;
 
 class ForumController extends Controller
@@ -32,7 +32,7 @@ class ForumController extends Controller
         return view('admin/forums/create');
     }
 
-    public function store(Request $request, Forum $forum)
+    public function store(StoreUpdateForum $request, Forum $forum)
     {
         $data = $request->all();
         $data['status'] = 'a';
@@ -63,6 +63,15 @@ class ForumController extends Controller
         $forum->update($request->only([
             'subject', 'body'
         ]));
+
+        return redirect()->route('forums.index');
+    }
+    public function destroy(string|int $id)
+    {
+        if(!$forum = Forum::find($id)) {
+            return back();
+        }
+        $forum->delete();
 
         return redirect()->route('forums.index');
     }

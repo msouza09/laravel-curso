@@ -5,3 +5,9 @@
   <li>Status: {{$forum->subject}}</li>
   <li>Descrição: {{$forum->body}}</li>
 </ul>
+
+<form action="{{ route('forums.destroy', $forum->id) }}" method="post">
+  @csrf()
+  @method('DELETE')
+  <button type="submit">Excluir</button>
+</form>
