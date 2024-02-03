@@ -34,7 +34,7 @@ class ForumController extends Controller
 
     public function store(StoreUpdateForum $request, Forum $forum)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $data['status'] = 'a';
 
         $forum = $forum->create($data);
@@ -50,7 +50,7 @@ class ForumController extends Controller
         return view('admin/forums.edit', compact('forum'));
     }
 
-    public function update(Request $request, Forum $forum, string $id)
+    public function update(StoreUpdateForum $request, Forum $forum, string $id)
     {
         if (!$forum = $forum->find($id)) {
             return back();
@@ -60,9 +60,7 @@ class ForumController extends Controller
         // $forum->body = $request->body;
         // $forum->save();
 
-        $forum->update($request->only([
-            'subject', 'body'
-        ]));
+        $forum->update($request->validated());
 
         return redirect()->route('forums.index');
     }

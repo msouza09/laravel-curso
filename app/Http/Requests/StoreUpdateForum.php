@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule as ValidationRule;
 
 class StoreUpdateForum extends FormRequest
 {
@@ -20,14 +22,27 @@ class StoreUpdateForum extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
     public function rules(): array
-    {
-        return [
+    {   
+        $rules = [
             'subject' => 'required|min:3|max:255|unique:forums',
             'body' => [
                 'required',
                 'min:3',
                 'max:10000',
-            ], 
+            ],
         ];
+
+        if ($this->method() === 'PUT') {
+            $rules['subject'] = [
+                'required',
+                'min:3',
+                'max:255',
+                // "unique:forums, subject,{$this->id},id",
+                ValidationRule::unique('forums')->ignore($this->id),
+                
+            ];
+        }
+
+        return $rules;
     }
 }
