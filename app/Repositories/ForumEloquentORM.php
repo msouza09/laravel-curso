@@ -24,7 +24,7 @@ class ForumEloquentORM implements ForumRepositoryInterface
                       $query->orWhere('body', 'like', "%{$filter}%");
                   }
                 })
-                ->all()
+                ->get()
                 ->toArray();
   }
 
