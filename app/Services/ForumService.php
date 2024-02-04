@@ -4,16 +4,14 @@ namespace App\Services;
 
 use App\DTO\CreateForumDTO;
 use App\DTO\UpdateForumDTO;
+use App\Repositories\ForumRepositoryInterface;
 use stdClass;
 
 class ForumService 
 {
-  protected $repository;
-
-    public function __construct()
-    {
-      
-    }
+    public function __construct(
+      protected ForumRepositoryInterface $repository
+    ) {}
     
     public function getAll(string $filter = null): array
     {
