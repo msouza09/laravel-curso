@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Repositories\ForumRepositoryInterface;
-use ForumEloquentORM;
+use App\Repositories\{ForumEloquentORM};
+use App\Repositories\{ForumRepositoryInterface};
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

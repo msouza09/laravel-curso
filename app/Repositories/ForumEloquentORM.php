@@ -1,9 +1,12 @@
 <?php
 
+namespace App\Repositories;
+
 use App\DTO\CreateForumDTO;
 use App\DTO\UpdateForumDTO;
 use App\Models\Forum;
 use App\Repositories\ForumRepositoryInterface;
+use stdClass;
 
 class ForumEloquentORM implements ForumRepositoryInterface
 {
