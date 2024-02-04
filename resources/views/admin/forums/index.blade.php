@@ -12,13 +12,13 @@
   <tbody>
     @foreach($forums as $forum)
     <tr>
-      <td>{{$forum->id }}</td>
-      <td>{{$forum->subject }}</td>
-      <td>{{$forum->status }}</td>
-      <td>{{$forum->body }}</td>
+      <td>{{$forum['id'] }}</td>
+      <td>{{$forum['subject'] }}</td>
+      <td>{{$forum['status'] }}</td>
+      <td>{{$forum['body'] }}</td>
       <td>
-        <a href="{{ route('forums.show', $forum->id) }}">Visualizar</a>
-        <a href="{{ route('forums.edit', $forum->id)}}">Editar</a>
+        <a href="{{ route('forums.show', $forum['id'])}}">Visualizar</a>
+        <a href="{{ route('forums.edit', $forum['id'])}}">Editar</a>
       </td>
     </tr>
     @endforeach

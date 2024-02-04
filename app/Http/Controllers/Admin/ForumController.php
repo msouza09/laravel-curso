@@ -19,7 +19,7 @@ class ForumController extends Controller
     public function index(Request $request)
     {   
         $forums = $this->service->getAll($request->filter);
-        dd($forums);
+
         return view('admin/forums/index', compact('forums'));
     }
 
