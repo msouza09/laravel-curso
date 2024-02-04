@@ -13,6 +13,18 @@ class ForumService
       protected ForumRepositoryInterface $repository
     ) {}
     
+    public function paginate(
+      int $page = 1, 
+      int $totalPerpage = 15, 
+      string $filter = null
+      ) {
+      return $this->repository->paginate(
+        page: $page,
+        totalPerpage: $totalPerpage,
+        filter: $filter,
+      );
+    }
+    
     public function getAll(string $filter = null): array
     {
       return $this->repository->getAll($filter);

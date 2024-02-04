@@ -18,8 +18,12 @@ class ForumController extends Controller
 
     public function index(Request $request)
     {   
-        $forums = $this->service->getAll($request->filter);
-
+        $forums = $this->service->paginate(
+            page: $request->get('page', 1),
+            totalPerpage: $request->get('per_page', 15),
+            filter: $request->filter,
+        );
+        
         return view('admin/forums/index', compact('forums'));
     }
 

@@ -15,6 +15,19 @@ class ForumEloquentORM implements ForumRepositoryInterface
     protected Forum $model
   ) {}
 
+  public function paginate(int $page = 1, int $totalPerpage = 15, string $filter = null): PaginationInterface
+  {
+    $result = $this->model
+                ->where(function($query) use ($filter) {
+                  if ($filter) {
+                      $query->where('subject', $filter);
+                      $query->orWhere('body', 'like', "%{$filter}%");
+                  }
+                })
+                ->paginate($totalPerpage, ["*"], 'page', $page);
+                dd($result->toArray());
+  }
+
   public function getAll(string $filter = null): array
   {
     return $this->model

@@ -3,7 +3,6 @@
 <a href="{{ route('forums.create')}}">Criar Dúvida</a>
 <table>
   <thead>
-    <th>id</th>
     <th>assunto</th>
     <th>status</th>
     <th>descrição</th>
@@ -12,7 +11,6 @@
   <tbody>
     @foreach($forums as $forum)
     <tr>
-      <td>{{$forum['id'] }}</td>
       <td>{{$forum['subject'] }}</td>
       <td>{{$forum['status'] }}</td>
       <td>{{$forum['body'] }}</td>
